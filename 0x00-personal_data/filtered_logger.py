@@ -46,7 +46,7 @@ def filter_datum(fields: List[str],
     return re.sub(pattern, lambda m: f"{m.group(1)}={redaction}", message)
 
 
-def get_logger()->logging.Logger:
+def get_logger() -> logging.Logger:
     """return logging.logger object"""
     logger = logging.getLogger("user_data")
     logger.setLevel(logging.INFO)
