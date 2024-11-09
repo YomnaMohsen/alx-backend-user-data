@@ -7,6 +7,9 @@ import mysql.connector
 import os
 
 
+PII_fields = ('name', 'email', 'phone', 'ssn', 'password')
+
+
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class
         """
@@ -43,6 +46,20 @@ def filter_datum(fields: List[str],
     return re.sub(pattern, lambda m: f"{m.group(1)}={redaction}", message)
 
 
+def get_logger()->logging.Logger:
+    """return logging.logger object"""
+    logger = logging.getLogger("user_data")
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
+
+    handler = logging.StreamHandler()
+
+    formatter = RedactingFormatter(PII_fields)
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+    return logger
+
+
 def get_db() -> mysql.connector.connection.MySQLConnection:
     """returns a connector to the database"""
     user = os.getenv('PERSONAL_DATA_DB_USERNAME') or "root"
@@ -53,3 +70,7 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     connection = mysql.connector.connect(user=user, password=psswd,
                                          host=host, database=db_name)
     return connection
+
+
+def main():
+    """main function"""
