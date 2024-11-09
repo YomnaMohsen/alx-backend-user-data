@@ -81,7 +81,8 @@ def main():
     fields = cursor.column_names
     for row in cursor:
         message = "".join("{}={}".format(k, v) for k, v in zip(fields, row))
-        logger.info(message.strip()) # want to check format of output
-    
+        logger.info(message.strip())  # want to check format of output
+
+
 if __name__ == '__main__':
     main()
