@@ -74,3 +74,14 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
 
 def main():
     """main function"""
+    logger = get_logger()
+    db_conn = get_db()
+    cursor = db_conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM users;")
+    fields = cursor.column_names
+    for row in cursor:
+        message = "".join("{}={}".format(k, v) for k, v in zip(fields, row))
+        logger.info(message.strip()) # want to check format of output
+    
+if __name__ == '__main__':
+    main()
