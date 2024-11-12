@@ -2,14 +2,18 @@
 """auth module"""
 from flask import request
 from typing import List, TypeVar
-from models.user import User
 
 
 class Auth():
     """Auth class"""
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """args: path,excluded_paths """
-        return False
+        if (path and excluded_paths):
+            p = path if path[-1] == '/' else path + "/"
+            if (p in excluded_paths):
+                return False
+
+        return True
 
     def authorization_header(self, request=None) -> str:
         """takes req as param"""
