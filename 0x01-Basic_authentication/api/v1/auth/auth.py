@@ -17,6 +17,10 @@ class Auth():
 
     def authorization_header(self, request=None) -> str:
         """takes req as param"""
+        if request:
+            if 'Authorization' in request.headers:
+                return request.headers['Authorization']
+                
         return None
 
     def current_user(self, request=None) -> TypeVar("User"):   # type ignore
