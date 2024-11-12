@@ -6,6 +6,7 @@ from models.user import User
 
 
 class Auth():
+    """Auth class"""
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """args: path,excluded_paths """
         return False
