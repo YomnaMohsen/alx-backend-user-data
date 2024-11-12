@@ -15,8 +15,8 @@ CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 auth = None
 
 if getenv("AUTH_TYPE") == "auth":
-     from api.v1.auth.auth import Auth
-     auth = Auth()
+    from api.v1.auth.auth import Auth
+    auth = Auth()
 
 
 @app.errorhandler(404)
@@ -39,23 +39,23 @@ def forbid(error) -> str:
     """
     return jsonify({"error": "Forbidden"}), 403
 
+
 @app.before_request
 def filter():
     """filtering requests"""
     if auth:
-        excluded_paths = ['/api/v1/status/', 
-                      '/api/v1/unauthorized/', 
-                      '/api/v1/forbidden/']
+        excluded_paths = ['/api/v1/status/',
+                          '/api/v1/unauthorized/',
+                          '/api/v1/forbidden/']
         check = auth.require_auth(request.path, excluded_paths)
-        
+
         if check:
             if not (auth.authorization_header(request)):
                 abort(401)
-        
+
             if not auth.current_user(request):
-                abort(403)       
-    
-        
+                abort(403)   
+
 
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
