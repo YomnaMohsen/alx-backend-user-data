@@ -2,9 +2,9 @@
 """basic_auth module
 """
 
-from api.v1.auth import Auth
+
+from .auth import Auth
 
 
 class BasicAuth(Auth):
     """Basic auth class"""
-    pass
