@@ -54,7 +54,7 @@ def filter():
                 abort(401)
 
             if not auth.current_user(request):
-                abort(403)   
+                abort(403)
 
 
 if __name__ == "__main__":
