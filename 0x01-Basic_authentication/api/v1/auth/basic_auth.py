@@ -7,3 +7,4 @@ from .auth import Auth
 
 class BasicAuth(Auth):
     """Basic auth class"""
+    pass
