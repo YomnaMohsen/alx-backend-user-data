@@ -5,6 +5,7 @@
 
 from .auth import Auth
 import base64
+from typing import TypeVar
 
 
 class BasicAuth(Auth):
@@ -34,3 +35,17 @@ class BasicAuth(Auth):
             return decoded_value
         except(TypeError, base64.binascii.Error):
             return None
+
+    def extract_user_credentials(
+        self, decoded_base64_authorization_header: str
+        ) -> (str, str):
+        """returns the user email and password from the Base64 decoded value."""
+
+        if  isinstance(decoded_base64_authorization_header, str):
+            split = decoded_base64_authorization_header.find(":")
+            if split != -1:
+                return (
+                    decoded_base64_authorization_header[:split],
+                    decoded_base64_authorization_header[split + 1:]
+                )
+        return (None, None)
