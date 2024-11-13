@@ -2,7 +2,7 @@
 """basic_auth module
 """
 
-from .auth import Auth
+from api.v1.auth import Auth
 
 
 class BasicAuth(Auth):
