@@ -75,7 +75,10 @@ class BasicAuth(Auth):
         """return user object for certain request"""
         headerval = self.authorization_header(request)
         base_64 = self.extract_base64_authorization_header(headerval)
+        print(base64)
         decoded_val = self.decode_base64_authorization_header(base_64)
+        print(decoded_val)
         email, pwd = self.extract_user_credentials(decoded_val)
+        print(email, pwd)
         user = self.user_object_from_credentials(email, pwd)
         return user

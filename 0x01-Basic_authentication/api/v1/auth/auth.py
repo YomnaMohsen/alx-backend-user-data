@@ -10,8 +10,11 @@ class Auth():
         """args: path,excluded_paths """
         if (path and excluded_paths):
             p = path if path[-1] == '/' else path + "/"
-            if (p in excluded_paths):
-                return False
+            for excp in excluded_paths:
+                if excp.endswith('*') and p.startswith(excp[:-1]):
+                    return False
+                if (excp == p):
+                    return False
 
         return True
 
