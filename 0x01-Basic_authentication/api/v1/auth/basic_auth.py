@@ -73,7 +73,7 @@ class BasicAuth(Auth):
 
     def current_user(self, request=None) -> TypeVar('User'):
         """return user object for certain request"""
-        headerval = Auth.authorization_header(request)
+        headerval = self.authorization_header(request)
         base_64 = self.extract_base64_authorization_header(headerval)
         decoded_val = self.decode_base64_authorization_header(base_64)
         email, pwd = self.extract_user_credentials(decoded_val)
