@@ -16,6 +16,7 @@ class User(Base):
         self.email = kwargs.get('email')
         self._password = kwargs.get('_password')
         self.first_name = kwargs.get('first_name')
+        print(self.first_name)
         self.last_name = kwargs.get('last_name')
 
     @property
