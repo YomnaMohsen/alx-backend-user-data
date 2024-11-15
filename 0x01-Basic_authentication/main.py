@@ -19,6 +19,8 @@ user.save()
 
 a = BasicAuth()
 
+u= a.user_object_from_credentials("u1@gmail.com", "pwd")
+print(u.display_name() if u is not None else "8None")
 u = a.user_object_from_credentials(None, None)
 print(u.display_name() if u is not None else "None")
 
@@ -28,8 +30,8 @@ print(u.display_name() if u is not None else "None")
 u = a.user_object_from_credentials("email@notfound.com", "pwd")
 print(u.display_name() if u is not None else "None")
 
-u = a.user_object_from_credentials(user_email, "pwd")
+u = a.user_object_from_credentials(67, 33)
 print(u.display_name() if u is not None else "None")
 
-u = a.user_object_from_credentials(user_email, user_clear_pwd)
+u = a.user_object_from_credentials(user_email, None)
 print(u.display_name() if u is not None else "None")
