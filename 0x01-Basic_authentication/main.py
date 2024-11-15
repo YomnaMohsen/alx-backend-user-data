@@ -5,22 +5,7 @@ import uuid
 from api.v1.auth.basic_auth import BasicAuth
 from models.user import User
 """ Create a user test """
-user_email = str(uuid.uuid4())
-user_clear_pwd = str(uuid.uuid4())
-user = User()
-user.email = user_email
-user.first_name = "Bob"
-user.last_name = "Dylan"
-user.password = user_clear_pwd
-user_email1 = str(uuid.uuid4())
-user_clear_pwd1 = str(uuid.uuid4())
-user1= User()
-user1.email = user_email1
-user1.first_name = "Bob"
-user1.last_name = "Dylan"
-user1.password = user_clear_pwd1
-print("New user: {}".format(user.display_name()))
-user.save()
+
 
 """ Retreive this user via the class BasicAuth """
 
